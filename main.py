@@ -42,6 +42,7 @@ REGISTERED_USERS = {
     "liz": "pass123"
 }
 
+#Prihlasovani
 cara=("-" * 40)
 user=input("username:")
 password=input("password:")
@@ -57,6 +58,9 @@ else:
     print("Unregistered user, terminating the program..")
     quit()  
 
+
+
+#Vyber textu
 text_number = input(f"Enter a number btw. 1 and {len(TEXTS)} to select: ")
 if not text_number.isdigit() or not (1 <= int(text_number) <= len(TEXTS)):
     print("Zly vyber, ukoncujem program...")
@@ -64,10 +68,14 @@ if not text_number.isdigit() or not (1 <= int(text_number) <= len(TEXTS)):
 
 print(cara)
 
+
+#Lists tagging
 zoznam_slov=TEXTS[int(text_number) -1].split() 
 pocet_slov=len(zoznam_slov) 
 ciste_slova = [slovo.strip(".,!?") for slovo in zoznam_slov if slovo.strip(".,!?")]
 
+
+#Pocty
 titlecase_count =0
 for slovo in ciste_slova: 
     if slovo.istitle():
@@ -93,6 +101,8 @@ for slovo in ciste_slova:
     if slovo.isdigit():
         numeric_sum +=int(slovo)
 
+
+#Vystup
 print(f"There are {pocet_slov} words in the selected text.")
 print(f"There are {titlecase_count} titlecase words.")
 print(f"There are {uppercase_count} uppercase words.")
@@ -103,6 +113,8 @@ print(cara)
 print('LEN|  OCCURENCES  |NR.')
 print(cara)
 
+
+#Dlzky slov
 dlzky_slov=[]
 for slovo in ciste_slova:
     dlzky_slov.append(len(slovo))
@@ -114,7 +126,7 @@ for dlzka in dlzky_slov:
     else:
         vyskyt_dlzok[dlzka] = 1
 
-
+#Graf
 for dlzka in sorted(vyskyt_dlzok):
     pocet=vyskyt_dlzok[dlzka]
     hviezdicky="*"*pocet
