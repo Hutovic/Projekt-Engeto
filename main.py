@@ -76,31 +76,29 @@ ciste_slova = [slovo.strip(".,!?") for slovo in zoznam_slov if slovo.strip(".,!?
 
 
 #Pocty
-titlecase_count =0
+titlecase_count = 0
+uppercase_count = 0
+lowercase_count = 0
+numeric_count = 0
+numeric_sum = 0
+vyskyt_dlzok = {}
+
 for slovo in ciste_slova: 
     if slovo.istitle():
-        titlecase_count +=1
-
-uppercase_count =0
-for slovo in ciste_slova: 
+        titlecase_count += 1
     if slovo.isupper():
-        uppercase_count +=1
-
-lowercase_count =0
-for slovo in ciste_slova: 
+        uppercase_count += 1
     if slovo.islower():
-        lowercase_count +=1
-
-numeric_count =0
-for slovo in ciste_slova: 
+        lowercase_count += 1
     if slovo.isdigit():
-        numeric_count +=1
+        numeric_count += 1
+        numeric_sum += int(slovo)
 
-numeric_sum  =0
-for slovo in ciste_slova: 
-    if slovo.isdigit():
-        numeric_sum +=int(slovo)
-
+    dlzka = len(slovo)
+    if dlzka in vyskyt_dlzok:
+        vyskyt_dlzok[dlzka] += 1
+    else:
+        vyskyt_dlzok[dlzka] = 1
 
 #Vystup
 print(f"There are {pocet_slov} words in the selected text.")
@@ -113,21 +111,8 @@ print(cara)
 print('LEN|  OCCURENCES  |NR.')
 print(cara)
 
-
-#Dlzky slov
-dlzky_slov=[]
-for slovo in ciste_slova:
-    dlzky_slov.append(len(slovo))
-
-vyskyt_dlzok = {}
-for dlzka in dlzky_slov:
-    if dlzka in vyskyt_dlzok:
-        vyskyt_dlzok[dlzka] += 1
-    else:
-        vyskyt_dlzok[dlzka] = 1
-
 #Graf
 for dlzka in sorted(vyskyt_dlzok):
-    pocet=vyskyt_dlzok[dlzka]
-    hviezdicky="*"*pocet
+    pocet = vyskyt_dlzok[dlzka]
+    hviezdicky = "*" * pocet
     print(f"{dlzka:>3} | {hviezdicky:<15} | {pocet}")
